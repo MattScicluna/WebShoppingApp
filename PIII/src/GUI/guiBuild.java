@@ -7,8 +7,11 @@ import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Image;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 
+import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -53,11 +56,21 @@ public class guiBuild extends JFrame {
 	boolean admin = false;
 	String userName;
 	boolean loggedOut = true;
+	
+	public ImageIcon ImageIcon2(String rel_url) throws IOException{
+		InputStream url = this.getClass().getResourceAsStream(rel_url);
+		Image image = ImageIO.read(url);
+		return new ImageIcon(image);
+	}
+	
+	ImageIcon img = ImageIcon2("/bg.png");
+	ImageIcon img2 = ImageIcon2("/Login-Manager.png");
+	ImageIcon img3= ImageIcon2("/option.png");
 
 
-	public guiBuild() {
-		super("CSC207 Shopping App");
-		setContentPane(new JLabel(new ImageIcon("Products\\bg.png")));
+	public guiBuild() throws IOException {
+		super("CSC207 Shopping App");	
+		setContentPane(new JLabel( img ));
 		setLayout(new FlowLayout());
 
 
@@ -73,9 +86,9 @@ public class guiBuild extends JFrame {
 		setJMenuBar(bar);
 
 		//Builds start menu
-
+		
 		startMenu = new JMenu("Start");
-		startMenu.setIcon(new ImageIcon("Products\\Login-Manager.png"));
+		startMenu.setIcon(img2);
 		bar.add(startMenu);
 		logList = new LoginListener(this);
 
@@ -174,6 +187,7 @@ public class guiBuild extends JFrame {
 				System.out.println(p.getID());
 				displayAvail.setText(project.availQ(p.getID())+"");
 				
+				
 				Image ProdImage = new ImageIcon("Products\\" + p.getPicture()).getImage().getScaledInstance(60, 60, Image.SCALE_DEFAULT);
 				ImageIcon ImageIcon = new ImageIcon(ProdImage);
 				
@@ -212,7 +226,7 @@ public class guiBuild extends JFrame {
 		//clear current start menu
 		bar.remove(startMenu);
 		startMenu = new JMenu("Welcome shopper, " + username + "!  ");
-		startMenu.setIcon(new ImageIcon("Products\\Login-Manager.png"));
+		startMenu.setIcon(img2);
 		logList = new LoginListener(this);
 		bar.add(startMenu);
 
@@ -223,7 +237,7 @@ public class guiBuild extends JFrame {
 
 		//add customer options
 		JMenu optionsMenu = new JMenu("Options");
-		optionsMenu.setIcon(new ImageIcon("Products\\option.png"));
+		optionsMenu.setIcon(img3);
 		bar.add(optionsMenu);
 
 		CustList = new CustListener(this);
@@ -273,7 +287,7 @@ public class guiBuild extends JFrame {
 		loggedOut = false;
 		bar.remove(startMenu);
 		startMenu = new JMenu("Welcome admin, " + username + "!   ");
-		startMenu.setIcon(new ImageIcon("Products\\Login-Manager.png"));
+		startMenu.setIcon(img2);
 		logList = new LoginListener(this);
 		bar.add(startMenu);
 
@@ -284,7 +298,7 @@ public class guiBuild extends JFrame {
 
 		//add Admin options
 		optionsMenu = new JMenu("Options");
-		optionsMenu.setIcon(new ImageIcon("Products\\option.png"));
+		optionsMenu.setIcon(img3);
 		bar.add(optionsMenu);
 		AdmList = new AdminListener(this);
 		optionsMenu.addActionListener(AdmList);
@@ -317,7 +331,7 @@ public class guiBuild extends JFrame {
 	}
 
 
-	public void guiBuildFromLogout(){
+	public void guiBuildFromLogout() {
 
 		//clear current start menu
 		bar.remove(startMenu);
@@ -332,7 +346,7 @@ public class guiBuild extends JFrame {
 		//Builds start menu
 
 		startMenu = new JMenu("Start");
-		startMenu.setIcon(new ImageIcon("Products\\Login-Manager.png"));
+		startMenu.setIcon(img2);
 		bar.add(startMenu);
 		logList = new LoginListener(this);
 
