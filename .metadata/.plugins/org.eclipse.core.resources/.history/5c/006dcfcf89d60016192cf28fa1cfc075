@@ -188,7 +188,7 @@ public class guiBuild extends JFrame {
 				displayAvail.setText(project.availQ(p.getID())+"");
 				
 				
-				Image ProdImage = new ImageIcon(p.getPicture()).getImage().getScaledInstance(60, 60, Image.SCALE_DEFAULT);
+				Image ProdImage = new ImageIcon("Products\\" + p.getPicture()).getImage().getScaledInstance(60, 60, Image.SCALE_DEFAULT);
 				ImageIcon ImageIcon = new ImageIcon(ProdImage);
 				
 				displayAvail.setIcon(ImageIcon);
@@ -214,7 +214,7 @@ public class guiBuild extends JFrame {
 				Price.setForeground(Color.GREEN);
 				Avail.setForeground(Color.GREEN);
 				
-				System.out.println("looking for: " + p.getPicture());
+				System.out.println("looking for: " + "Products\\" + p.getPicture());
 				((JPanel) Output).add(displayJPanel, outputConstraints);
 			}
 			return Output;

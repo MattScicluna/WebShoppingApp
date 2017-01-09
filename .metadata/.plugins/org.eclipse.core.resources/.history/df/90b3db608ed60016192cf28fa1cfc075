@@ -47,7 +47,7 @@ public class AdminListener implements ActionListener{
 					"Enter name:", prodName,
 					"Enter Category Name:", category,
 					"Enter Price", price,
-					"Enter file location of of image", ImageFileName
+					"Enter name of image file", ImageFileName
 			};
 			int regForm = JOptionPane.showConfirmDialog(null, message, "Create new Product", JOptionPane.OK_CANCEL_OPTION);
 

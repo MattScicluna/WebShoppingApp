@@ -214,7 +214,7 @@ public class guiBuild extends JFrame {
 				Price.setForeground(Color.GREEN);
 				Avail.setForeground(Color.GREEN);
 				
-				System.out.println("looking for: " + p.getPicture());
+				System.out.println("looking for: " + "Products\\" + p.getPicture());
 				((JPanel) Output).add(displayJPanel, outputConstraints);
 			}
 			return Output;
